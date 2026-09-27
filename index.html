@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JMarket - Casual Financial Tools & Management</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="brand">
+            <img src="assets/logo.png" alt="JMarket Logo" class="brand-logo" onerror="this.src='https://via.placeholder.com/45/4f46e5/ffffff?text=JM'">
+            <div>
+                <h2>JMarket</h2>
+                <p>Casual Finance Suite</p>
+            </div>
+        </div>
+
+        <nav class="nav-menu">
+            <button class="nav-btn active" data-target="flower-inventory">
+                <i class="fa-solid fa-seedling"></i>
+                <span>Bouquet Inventory</span>
+            </button>
+            <button class="nav-btn" data-target="price-comparison">
+                <i class="fa-solid fa-code-compare"></i>
+                <span>Price Compare</span>
+            </button>
+            <button class="nav-btn" data-target="currency-hike">
+                <i class="fa-solid fa-coins"></i>
+                <span>Currency & Inflation</span>
+            </button>
+            <button class="nav-btn" data-target="cinema-ticketing">
+                <i class="fa-solid fa-film"></i>
+                <span>Cinema Tickets</span>
+            </button>
+            <button class="nav-btn" data-target="loan-calculator">
+                <i class="fa-solid fa-calculator"></i>
+                <span>Loan & Savings</span>
+            </button>
+        </nav>
+
+        <div class="sidebar-footer">
+            <img src="assets/logo.png" alt="Logo Watermark" class="footer-logo" onerror="this.style.display='none'">
+            <p>&copy; 2026 JMarket Finance</p>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        
+        <!-- Header -->
+        <header class="top-header">
+            <div class="header-title">
+                <h1 id="page-title">Flower Bouquet Inventory & Accounts</h1>
+                <p id="page-desc">Manage stock, cost, and profit margins easily.</p>
+            </div>
+            <div class="header-logo-badge">
+                <img src="assets/logo.png" alt="JMarket" onerror="this.src='https://via.placeholder.com/35/4f46e5/ffffff?text=JM'">
+                <span>JMarket Hub</span>
+            </div>
+        </header>
+
+        <!-- SECTION 1: FLOWER BOUQUET INVENTORY -->
+        <section id="flower-inventory" class="tab-content active">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                    <div>
+                        <p>Total Stock</p>
+                        <h3 id="stat-bouquets">0 Bouquets</h3>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fa-solid fa-vault"></i>
+                    <div>
+                        <p>Inventory Value</p>
+                        <h3 id="stat-val">$0.00</h3>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <div>
+                        <p>Est. Potential Profit</p>
+                        <h3 id="stat-profit">$0.00</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <!-- Add Bouquet Form -->
+                <div class="card">
+                    <div class="card-title">
+                        <img src="assets/logo.png" class="mini-logo" onerror="this.style.display='none'">
+                        <h3><i class="fa-solid fa-plus-circle"></i> Add New Bouquet</h3>
+                    </div>
+                    <form id="bouquet-form">
+                        <div class="form-group">
+                            <label>Bouquet Name</label>
+                            <input type="text" id="bq-name" placeholder="e.g. Classic Red Rose Bouquet" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Cost Price ($)</label>
+                                <input type="number" id="bq-cost" step="0.01" placeholder="15.00" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Selling Price ($)</label>
+                                <input type="number" id="bq-price" step="0.01" placeholder="35.00" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Stock Quantity</label>
+                            <input type="number" id="bq-qty" placeholder="10" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-save"></i> Save Bouquet</button>
+                    </form>
+                </div>
+
+                <!-- Bouquet List -->
+                <div class="card">
+                    <div class="card-title">
+                        <img src="assets/logo.png" class="mini-logo" onerror="this.style.display='none'">
+                        <h3><i class="fa-solid fa-list"></i> Bouquet Accounts List</h3>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Cost</th>
+                                    <th>Price</th>
+                                    <th>Qty</th>
+                                    <th>Margin</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bouquet-table">
+                                <!-- JS inserts rows here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: PRICE COMPARISON EACH -->
+        <section id="price-comparison" class="tab-content">
+            <div class="card">
+                <div class="card-title">
+                    <img src="assets/logo.png" class="mini-logo" onerror="this.style.display='none'">
+                    <h3><i class="fa-solid fa-balance-scale"></i> Compare Items by Unit Price</h3>
+                </div>
+                <p class="subtitle">Enter product details to calculate price per unit/gram/ml and find the smartest deal!</p>
+                
+                <div class="grid-2">
+                    <!-- Option A -->
+                    <div class="compare-box">
+                        <h4>Option A</h4>
+                        <div class="form-group">
+                            <label>Item Name</label>
+                            <input type="text" id="itemA-name" value="Brand A">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Total Price ($)</label>
+                                <input type="number" id="itemA-price" step="0.01" placeholder="12.00">
+                            </div>
+                            <div class="form-group">
+                                <label>Amount / Qty</label>
+                                <input type="number" id="itemA-qty" step="0.01" placeholder="500">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Unit Type</label>
+                            <select id="itemA-unit">
+                                <option value="g">Grams (g)</option>
+                                <option value="ml">Milliliters (ml)</option>
+                                <option value="pcs">Pieces (pcs)</option>
+                                <option value="kg">Kilograms (kg)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Option B -->
+                    <div class="compare-box">
+                        <h4>Option B</h4>
+                        <div class="form-group">
+                            <label>Item Name</label>
+                            <input type="text" id="itemB-name" value="Brand B">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Total Price ($)</label>
+                                <input type="number" id="itemB-price" step="0.01" placeholder="18.00">
+                            </div>
+                            <div class="form-group">
+                                <label>Amount / Qty</label>
+                                <input type="number" id="itemB-qty" step="0.01" placeholder="850">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Unit Type</label>
+                            <select id="itemB-unit">
+                                <option value="g">Grams (g)</option>
+                                <option value="ml">Milliliters (ml)</option>
+                                <option value="pcs">Pieces (pcs)</option>
+                                <option value="kg">Kilograms (kg)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" onclick="comparePrices()"><i class="fa-solid fa-magnifying-glass-dollar"></i> Calculate Best Value</button>
+
+                <div id="compare-result" class="result-banner hidden"></div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: CURRENCY & PRICE HIKE -->
+        <section id="currency-hike" class="tab-content">
+            <div class="grid-2">
+                <!-- Currency Converter -->
+                <div class="card">
+                    <div class="card-title">
+                        <img src="assets/logo.png" class="mini-logo" onerror="this.style.display='none'">
+                        <h3><i class="fa-solid fa-money-bill-transfer"></i> Quick Currency Converter</h3>
+                    </div>
+                    <div class="form-group">
+                        <label>Amount</label>
+                        <input type="number" id="curr-amount" value="100" oninput="convertCurrency()">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>From</label>
+                            <select id="curr-from" onchange="convertCurrency()">
+                                <option value="USD">USD - US Dollar</option>
+                                <option value="EUR">EUR - Euro</option>
+                                <option value="GBP">GBP - British Pound</option>
+                                <option value="PHP">PHP - Philippine Peso</option>
+                                <option value="JPY">JPY - Japanese Yen</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>To</label>
+                            <select id="curr-to" onchange="convertCurrency()">
+                                <option value="PHP">PHP - Philippine Peso</option>
+                                <option value="USD">USD - US Dollar</option>
+                                <option value="EUR">EUR - Euro</option>
+                                <option value="GBP">GBP - British Pound</option>
+                                <option value="JPY">JPY - Japanese Yen</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="converted-box">
+                        <p>Converted Result:</p>
+                        <h2 id="curr-result">0.00</h2>
+                    </div>
+                </div>
+
+                <!-- Price Hike & Inflation Simulator -->
+                <div class="card">
+                    <div class="card-title">
+                        <img src="assets/logo.png" class="mini-logo" onerror="this.style.display='none'">
+                        <h3><i class="fa-solid fa-arrow-trend-up"></i> Price Hike & Tax Simulator</h3>
+                    </div>
+                    <div class="form-group">
+                        <label>Current Item Price ($)</label>
+                        <input type="number" id="hike-price" value="50.00">
+                    </div>
+                    <div class="form-group">
+                        <label>Expected Price Hike / Inflation Rate (%)</label>
+                        <input type="number" id="hike-rate" value="5.5" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label>Local Tax Rate (%)</label>
+                        <input type="number" id="hike-tax" value="12" step="0.1">
+                    </div>
+                    <button class="btn btn-primary" onclick="calculateHike()"><i class="fa-solid fa-calculator"></i> Simulate New Price</button>
+
+                    <div id="hike-result" class="result-details hidden"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: CINEMA TICKETING -->
+        <section id="cinema-ticketing" class="tab-content">
+            <div class="grid-2">
+                <!-- Ticket Booking Form -->
+                <div class="card">
+                    <div class="card-title">
+                        <img src="assets/logo.png" class="mini-logo" onerror="this.style.display='none'">
+                        <h3><i class="fa-solid fa-ticket"></i> Book Cinema Tickets</h3>
+                    </div>
+                    <form id="cinema-form">
+                        <div class="form-group">
+                            <label>Select Movie</label>
+                            <select id="movie-select">
+                                <option value="12.00">Avatar: Fire & Ash ($12.00)</option>
+                                <option value="10.50">Cyberpunk Odyssey ($10.50)</option>
+                                <option value="8.00">Casual Family Comedy ($8.00)</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Standard Tickets</label>
+                                <input type="number" id="tkt-standard" min="0" value="1">
+                            </div>
+                            <div class="form-group">
+                                <label>VIP / Recliner Tickets (+$5)</label>
+                                <input type="number" id="tkt-vip" min="0" value="0">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Add Popcorn Combo ($6.50)</label>
+                            <input type="number" id="tkt-popcorn" min="0" value="0">
+                        </div>
+                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-receipt"></i> Process Transaction</button>
+                    </form>
+                </div>
+
+                <!-- Ticket Summary / Receipt -->
+                <div class="card">
+                    <div class="card-title">
+                        <img src="assets/logo.png" class="mini-logo" onerror="this.style.display='none'">
+                        <h3><i class="fa-solid fa-file-invoice-dollar"></i> Receipt Breakdown</h3>
+                    </div>
+                    <div id="cinema-receipt" class="receipt-box">
+                        <p class="text-muted">Select movie options to generate receipt.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: LOAN & SAVINGS CALCULATOR -->
+        <section id="loan-calculator" class="tab-content">
+            <div class="card">
+                <div class="card-title">
+                    <img src="assets/logo.png" class="mini-logo" onerror="this.style.display='none'">
+                    <h3><i class="fa-solid fa-piggy-bank"></i> Loan Payment & Compound Interest Calculator</h3>
+                </div>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Principal Amount ($)</label>
+                        <input type="number" id="calc-amount" value="5000">
+                    </div>
+                    <div class="form-group">
+                        <label>Annual Interest Rate (%)</label>
+                        <input type="number" id="calc-rate" value="6.5" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label>Term (Years)</label>
+                        <input type="number" id="calc-years" value="3">
+                    </div>
+                    <div class="form-group">
+                        <label>Calculation Mode</label>
+                        <select id="calc-mode">
+                            <option value="loan">Monthly Loan Payment</option>
+                            <option value="savings">Compound Savings Growth</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="calculateFinancials()"><i class="fa-solid fa-chart-pie"></i> Calculate</button>
+
+                <div id="calc-result" class="result-banner hidden"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Custom JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
